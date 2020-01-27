@@ -1,2 +1,4 @@
-# CS3-CStromberg
-CS3 Spring 2020
+# CS3 - Intro to Algorithms
+- Spring 2020
+- Chris Stromberg
+## Assignments

@@ -1,7 +1,7 @@
 #include <iostream>
-#include <cstring>
 #include <cassert>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -24,4 +24,26 @@ void test()
     assert(ans("14 20 83 1 19 76 83 33 56 12 32 45 21 11 9") == "277 224");
     cout << "All test cases passed...\n";
 
+}
+
+string ans(string input)
+{
+    stringstream strdata;
+    vector<int> data;
+    int turns, i;
+
+    i = 0;
+    strdata << input;
+
+    while(!strdata.eof())
+    {
+        strdata << data[i];
+        i++;
+    }
+
+    turns = data[0];
+    
+    data.erase(data.begin());
+    for (int j = 0; j < i; j++) data[j]=data[j+1];
+    
 }

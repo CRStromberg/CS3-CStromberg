@@ -48,6 +48,8 @@ string ans(string input)
     data.erase(data.begin());
     for (j = 0; j < i; j++) data[j]=data[j+1];
 
+    data[i] = 'Null';
+
     //Sort Vector form lg to sm
     sort(data.begin(), data.end(), greater<int>());
 
@@ -57,8 +59,8 @@ string ans(string input)
     //Distribute to Alica and Bob
     for (j = 0; j < i; j+=2)
     {
-        alice += data[j];
-        bob += data[j+1];
+        if (data[j] != 'Null')  alice += data[j];
+        if (data[j+1] != 'Null')  bob += data[j+1];
     }
 
     finans = alice + " " + bob;

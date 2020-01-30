@@ -10,11 +10,15 @@ void test();
 string ans(string input);
 
 
-int main()
+int main(int argc, char* argv[])
 {
-    
+    string info;
 
-
+    if (argc > 1 && strncmp(argv[1], "test", 4) == 0)
+        test();
+    else
+        cin >> info;
+        cout << ans(info);
     return 0;
 }
 
@@ -30,25 +34,24 @@ string ans(string input)
 {
     stringstream strdata;
     vector<int> data;
-    int turns, i, j, bob, alice;
+    int turns, i, j, bob, alice, temp;
     string finans;
-
+    
     i = 0;
     strdata << input;
-
-    while(!strdata.eof())
+    while (strdata >> temp)
     {
-        strdata << data[i];
+        data.push_back(temp);
         i++;
     }
-
+    
     //remove # of turns from vectors and move everything up
     turns = data[0];
     
     data.erase(data.begin());
     for (j = 0; j < i; j++) data[j]=data[j+1];
 
-    data[i] = 'Null';
+    data[i] = 0;
 
     //Sort Vector form lg to sm
     sort(data.begin(), data.end(), greater<int>());
@@ -59,10 +62,11 @@ string ans(string input)
     //Distribute to Alica and Bob
     for (j = 0; j < i; j+=2)
     {
-        if (data[j] != 'Null')  alice += data[j];
-        if (data[j+1] != 'Null')  bob += data[j+1];
+        if (data[j] != 0)  alice += data[j];
+        if (data[j+1] != 0)  bob += data[j+1];
     }
 
     finans = alice + " " + bob;
+    cout << finans;
     return finans;
 }

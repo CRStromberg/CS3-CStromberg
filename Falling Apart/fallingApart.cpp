@@ -9,7 +9,6 @@ using namespace std;
 void test();
 string ans(string input);
 
-
 int main(int argc, char* argv[])
 {
     string info;
@@ -24,7 +23,7 @@ int main(int argc, char* argv[])
 
 void test()
 {
-    assert(ans("5 9 2 5 8 3") == "18 11");
+    assert(ans("5 9 2 5 8 3") == "16 11");
     assert(ans("2 7 1") == "7 1");
     assert(ans("14 20 83 1 19 76 83 33 56 12 32 45 21 11 9") == "277 224");
     cout << "All test cases passed...\n";
@@ -32,41 +31,40 @@ void test()
 
 string ans(string input)
 {
-    stringstream strdata;
-    vector<int> data;
+    stringstream strdata(input);
     int turns, i, j, bob, alice, temp;
     string finans;
-    
-    i = 0;
-    strdata << input;
-    while (strdata >> temp)
-    {
-        data.push_back(temp);
-        i++;
-    }
-    
-    //remove # of turns from vectors and move everything up
+        
+    vector<int> data((istream_iterator<int>(strdata)), istream_iterator<int>());
+   
+    //remove # of turns
     turns = data[0];
-    
     data.erase(data.begin());
-    for (j = 0; j < i; j++) data[j]=data[j+1];
-
-    data[i] = 0;
 
     //Sort Vector form lg to sm
-    sort(data.begin(), data.end(), greater<int>());
+    sort(data.begin(), data.end(), less<int>());
 
     alice = 0;
     bob = 0;
-
+    
     //Distribute to Alica and Bob
-    for (j = 0; j < i; j+=2)
+    for (j = 0; j < turns; j+=2)
     {
-        if (data[j] != 0)  alice += data[j];
-        if (data[j+1] != 0)  bob += data[j+1];
+        if (!data.empty())  
+        {
+            alice += data.back();
+            data.pop_back();
+        }
+        if (!data.empty())  
+        {
+            bob += data.back();
+            data.pop_back();
+        }
     }
 
-    finans = alice + " " + bob;
-    cout << finans;
+    finans = to_string(alice);
+    finans += " ";
+    finans += to_string(bob);
+   
     return finans;
 }

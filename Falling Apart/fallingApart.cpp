@@ -1,8 +1,24 @@
+/*
+Kattis Problem
+Falling Apart
+
+    Algorithm
+-----------------
+-   Read Data
+-   Write test cases
+-   Compute data
+    -   Set first number = to # of turns
+    -   Sort data from Largest to Least
+    -   pop data off giving it to Alice and Bob switching between the too
+-   Output the Answer
+*/
+
 #include <iostream>
 #include <cassert>
 #include <vector>
 #include <sstream>
 #include <bits/stdc++.h>
+#include <fstream>
 
 using namespace std;
 
@@ -11,13 +27,19 @@ string ans(string input);
 
 int main(int argc, char* argv[])
 {
-    string info;
+    string info, temp;
+    int alice, bob;
 
-    if (argc > 1 && strncmp(argv[1], "test", 4) == 0)
-        test();
+    if (argc > 1 && strncmp(argv[1], "test", 4) == 0) {test();}
     else
-        cin >> info;
-        cout << ans(info);
+    {
+        getline(cin, info);
+        getline(cin, temp);
+        info += " "+ temp;
+        stringstream fstrans(ans(info));
+        fstrans >> alice >> bob;
+        cout << alice << " " << bob;
+    }
     return 0;
 }
 
@@ -41,7 +63,7 @@ string ans(string input)
     turns = data[0];
     data.erase(data.begin());
 
-    //Sort Vector form lg to sm
+    //Sort Vector from lg to sm
     sort(data.begin(), data.end(), less<int>());
 
     alice = 0;
@@ -62,6 +84,7 @@ string ans(string input)
         }
     }
 
+    //Merge Integers to a string for final answer
     finans = to_string(alice);
     finans += " ";
     finans += to_string(bob);

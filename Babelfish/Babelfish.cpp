@@ -15,7 +15,7 @@ Babelfish
 */
 #include <iostream>
 #include <cassert>
-#include <vector>
+#include <map>
 #include <sstream>
 #include <fstream>
 #include <bits/stdc++.h>
@@ -24,7 +24,6 @@ using namespace std;
 
 string dictionary(string known, string unknown);
 void test();
-
 
 int main(int argc, char* argv[])
 {
@@ -50,12 +49,68 @@ void test()
 
 string dictionary(string known, string unknown)
 {
+    int i;
+    map <string, string> trans_AM;
+    map <string, string> trans_NZ;
+
+    char temp = unknown[0];
+    temp = tolower(temp);
+
     if (known =="00")
     {
+        //Using modified find() loop from geeksforgeeks.com
+        //https://www.geeksforgeeks.org/map-find-function-in-c-stl/
+        switch (temp)
+        {
+            case 'a':
+            case 'b':
+            case 'c':
+            case 'd':
+            case 'e':
+            case 'f':
+            case 'g':
+            case 'h':
+            case 'i':
+            case 'j':
+            case 'k':
+            case 'l':
+            case 'm':
+            /*
+            Change to temp = .find()-second
+            */
+                for (auto itr = trans_AM.find(unknown); itr != trans_AM.end(); itr++) 
+            break;
+            default:
+                for (auto itr = trans_NZ.find(unknown); itr != trans_NZ.end(); itr++) 
+            break;
+
+        }
+    
 
     }
     else
     {
+                switch (temp)
+        {
+            case 'a':
+            case 'b':
+            case 'c':
+            case 'd':
+            case 'e':
+            case 'f':
+            case 'g':
+            case 'h':
+            case 'i':
+            case 'j':
+            case 'k':
+            case 'l':
+            case 'm':
+                trans_AM.insert({known, unknown});
+            break;
+            default:
+                trans_NZ.insert({known, unknown});
+            break;
+        }
         
             
         

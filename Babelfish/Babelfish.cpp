@@ -1,3 +1,11 @@
+/*Chris Stromberg
+02/12/20
+
+note: I probably could get it to run faster if I spent more time on it, 
+but it was way under the 3 second limit. 
+*/
+
+
 /*
 Kattis Problem
 Babelfish
@@ -6,7 +14,7 @@ Babelfish
 -----------------
 -   Read Data
     -   Create Dictionary from data
-    -   Ceate list of words to be translated
+    -   Read words to be translated
 -   Write test cases
 -   Compute data
     -   search Dictionary for word to be translated
@@ -22,6 +30,7 @@ Babelfish
 
 using namespace std;
 
+//Spit up dictionary for faster search
 map <string, string> trans_AM;
 map <string, string> trans_NZ;
 
@@ -31,28 +40,28 @@ void test();
 
 int main(int argc, char* argv[])
 {
+    string temp, known, unknown;
     if (argc > 1 && strncmp(argv[1], "test", 4) == 0) {test();}
     else
     {
+        //Get English and non-english words
+        do
+        {
+            getline(cin, temp);
+            istringstream ss(temp);
+            ss >> known >> unknown;
+            insert_dictionary(known, unknown);
 
+        } while (!temp.empty());
+                
+        //Get words to be translated
+        while(getline(cin, unknown))
+        {
+            cout<<search_dictionary(unknown)<<endl;
+        }
     }
-   for(auto elem : trans_AM)
-    {
-        std::cout << elem.first << " " << elem.second<<"\n";
-    }
-    for(auto elem : trans_NZ)
-    {
-        std::cout << elem.first << " " << elem.second << "\n";
-    }
-    
-    cout<<endl<<endl<<"This is the search results for hallo(hello): " <<search_dictionary("hallo")<<endl
-    <<"This is the search results for kann(may): " <<search_dictionary("kann")<<endl<<
-    "This is the search results for samstag(saturday): " <<search_dictionary("samstag")<<endl<<
-    "This is the search results for wasd(eh): " <<search_dictionary("wasd")<<endl<<endl;
-    
     return 0;
 }
-
 
 void test()
 {
@@ -60,10 +69,10 @@ void test()
     insert_dictionary("may", "kann");
     insert_dictionary("saturday", "samstag");
 
-    //assert(search_dictionary("00", "hallo") == "hello");
-    //assert(search_dictionary("00", "wasd") == "eh");
-    //assert(search_dictionary("00", "samstag") == "saturday");
-    //cout << "All test cases passed...\n";
+    assert(search_dictionary("hallo") == "hello");
+    assert(search_dictionary("wasd") == "eh");
+    assert(search_dictionary("samstag") == "saturday");
+    cout << "All test cases passed...\n";
 }
 
 string search_dictionary(string unknown)
@@ -87,11 +96,11 @@ string search_dictionary(string unknown)
         case 'l':
         case 'm':
             if(trans_AM.find(unknown) != trans_AM.end()) { return trans_AM.find(unknown)->second; }
-            else { return "eh a-m"; }
+            else { return "eh"; }
         break;
         default:
             if(trans_NZ.find(unknown) != trans_NZ.end()) { return trans_NZ.find(unknown)->second; }
-            else { return "eh n-z"; }                        
+            else { return "eh"; }                        
         break;
     }
 }
@@ -101,7 +110,6 @@ void insert_dictionary(string known, string unknown)
     char temp = unknown[0];
     temp = tolower(temp);
 
-    
     switch (temp)
     {
         case 'a':

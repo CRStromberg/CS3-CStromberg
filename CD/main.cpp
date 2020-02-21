@@ -25,14 +25,14 @@ CD
 using namespace std;
 
 
-void test(vector <int> &Jack, vector <int> &Jill);
-void read(vector <int> &Jack, vector <int> &Jill);
-int ans(vector <int> &Jack, vector <int> &Jill, int jkN, int jlN);
+void test(vector <int unsigned> &Jack, vector <int unsigned> &Jill);
+void read(vector <int unsigned> &Jack, vector <int unsigned> &Jill);
+int ans(vector <int unsigned> &Jack, vector <int unsigned> &Jill, int jkN, int jlN);
 
 int main(int argc, char* argv[])
 {
-    vector <int> Jack;
-    vector <int> Jill;
+    vector <int unsigned> Jack;
+    vector <int unsigned> Jill;
 
     if (argc > 1 && strncmp(argv[1], "test", 4) == 0) { test(Jack, Jill); }
     else { read(Jack, Jill); }
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-void test(vector <int> &Jack, vector <int> &Jill)
+void test(vector <int unsigned> &Jack, vector <int unsigned> &Jill)
 {
     int jkn, jln;
 
@@ -66,52 +66,47 @@ void test(vector <int> &Jack, vector <int> &Jill)
     assert(ans(Jack, Jill, jkn, jln) == 3);
     
     cout<<"All Test Cases Passed...\n";
-
 }
 
-int ans(vector <int> &Jack, vector <int> &Jill, int jkN, int jlN)
+int ans(vector <int unsigned> &Jack, vector <int unsigned> &Jill, int jkN, int jlN)
 {
-    vector <int>::iterator it;
     int i;
     int answer = 0;
 
-    //Determine shortest vector and search the largest (fewer loops)
+    //Determine shortest vector and search the largest (fewer loops) using binary_search()
     if(Jack.size() > Jill.size())
     {
-          
         for(i=0; i<jlN; i++)
         {
-            it = find(Jack.begin(), Jack.end(), Jill[i]);
-
-            if (it != Jack.end()) { answer ++;}
+            if (binary_search(Jack.begin(), Jack.end(), Jill.at(i))) { answer++;}
         }
     }
     else
     {
         for(i =0; i<jkN; i++)
         {
-            it = find(Jill.begin(), Jill.end(), Jack[i]);
-
-            if (it != Jill.end()) { answer ++;}         
+            if (binary_search(Jill.begin(), Jill.end(), Jack.at(i))) { answer++;}
         }        
     }
     return answer;
 }
 
-void read(vector <int> &Jack, vector <int> &Jill)
+void read(vector <int unsigned> &Jack, vector <int unsigned> &Jill)
 {
     int jkn, jln;
-    int jktemp = -1;
-    int jltemp = -1;
+    int temp, i;
 
     cin >> jkn >> jln;
 
-    //Read Data and insert into vector
-    while (jktemp!=0 && jltemp!=0)
+    for(i=0;i<jkn;i++)
     {
-        cin >> jktemp >> jltemp;
-        Jack.push_back(jktemp);
-        Jill.push_back(jltemp);
-    } 
-    cout << ans(Jack, Jill, jkn, jln);
+        cin >> temp;
+        Jack.push_back(temp);
+    }
+    for(i=0;i<jln;i++)
+    {
+        cin >> temp;
+        Jill.push_back(temp);
+    }
+    cout << ans(Jack, Jill, jkn, jln)<<endl;
 }

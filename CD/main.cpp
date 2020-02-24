@@ -81,19 +81,24 @@ int ans(vector <int> &Jack, vector <int> &Jill, int jkN, int jlN)
           
         for(i=0; i<jlN; i++)
         {
-            it = find(Jack.begin(), Jack.end(), Jill[i]);
+            if (binary_search(Jack.begin(), Jack.end(), Jill[i])) { answer ++;}            
+            //it = find(Jack.begin(), Jack.end(), Jill[i]);
 
-            if (it != Jack.end()) { answer ++;}
+            //if (it != Jack.end()) { answer ++;}
         }
+        
     }
     else
     {
+        
         for(i =0; i<jkN; i++)
         {
-            it = find(Jill.begin(), Jill.end(), Jack[i]);
+            if (binary_search(Jill.begin(), Jill.end(), Jack[i])) { answer ++;}            
+            //it = find(Jill.begin(), Jill.end(), Jack[i]);
 
-            if (it != Jill.end()) { answer ++;}         
-        }        
+            //if (it != Jill.end()) { answer ++;}         
+        } 
+               
     }
     return answer;
 }

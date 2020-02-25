@@ -9,8 +9,14 @@
 - Screenshot screenshot.jpg added (10 points)
 - total points = 100/100
 
-# 1 Babelfish
+# 2 Babelfish
 - Solved using map and accepted (50 points)
+- Wrote and tested 3 test cases (3*10 = 30 points)
+- Screenshot screenshot.jpg added (10 points)
+- total points = 100/100
+
+# 3 CD
+- Solved using vectors, binary_search(), and accepted (50 points)
 - Wrote and tested 3 test cases (3*10 = 30 points)
 - Screenshot screenshot.jpg added (10 points)
 - total points = 100/100

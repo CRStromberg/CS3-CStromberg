@@ -1,4 +1,7 @@
 /*
+Chris Stromberg
+02/25/20
+
 Kattis Problem
 CD
 

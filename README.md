@@ -21,7 +21,7 @@
 - Screenshot screenshot.jpg added (10 points)
 - total points = 100/100
 
-# 3 Putovanje
+# 4 Putovanje
 - Solved using vectors, and accepted (50 points)
 - Wrote and tested 3 test cases (3*10 = 30 points)
 - Screenshot screenshot.jpeg added (10 points)

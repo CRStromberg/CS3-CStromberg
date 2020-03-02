@@ -1,0 +1,3 @@
+Ryzen is a brand of x86-64 microprocessors designed and marketed 
+by Advanced Micro Devices, Inc. (AMD) for desktop, mobile and embedded 
+platforms based on the Zen microarchitecture and its successors.

@@ -1,3 +1,4 @@
+
 //Chris Stromberg
 #include <iostream>
 #include <string>
@@ -73,9 +74,9 @@ int main()
                         cin >> word_search;
 
                         word_search[0] = toupper(word_search[0]);
-
+                        
                         temp = x.search_tree(root, word_search);
-                        if(temp !=0) cout << endl << word_search << " appeared " << temp << " times." << endl << endl;
+                        if(temp != 0) cout << endl << word_search << " appeared " << temp << " times." << endl << endl;
                         else cout << word_search << " not found\n";
                     }
                     else cout << endl << endl << "The tree is empty!"<< endl << endl;

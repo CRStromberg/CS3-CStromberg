@@ -134,9 +134,9 @@ int tree::search_tree(tree *c, string word)
 {
     if(c != NULL)
     {
-        if(c -> word == word) return c -> count;
+        if(word.compare(c->word) == 0) return c -> count;
 
-        if(c -> word < word) return search_tree(c -> left, word);
+        if(c->word.compare(word) > word.compare(c->word)) return search_tree(c -> left, word);
         else return search_tree(c -> right, word);
     }
     else return 0;

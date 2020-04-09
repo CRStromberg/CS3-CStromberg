@@ -38,7 +38,8 @@
 - total points = 100/100
 
 # 6 Binary Search Tree
-- Still Working on it
+- Finished 
 - [Main file](BST/main.cpp)
 - [Implimintation file](BST/bst.cpp)
 - [Header file](BST/bst.h)
+- total points = 100/100

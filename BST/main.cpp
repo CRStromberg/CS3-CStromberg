@@ -1,13 +1,16 @@
+// Chris Stromberg
+// Finished 04/09/20
 
-//Chris Stromberg
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "bst.h"
 
 using namespace std;
 
 char us_menu(char &menu);
+void write_top_ten(int count[10], string word[10]);
 
 int main()
 {
@@ -87,8 +90,7 @@ int main()
             case 'T':
                 for(int i = 0; i < 10; i++) { count[i] = 0; }
                 x.print_top(root, count, word);
-                cout << endl << endl << "The top ten words and the occurrence are: \n";
-                for(int i = 0; i < 10; i++) { cout << word[i] << " occured " << count[i] << " times\n"; }
+                write_top_ten(count, word);
                 cout << endl << endl;
                 break;
             case 'W':
@@ -118,4 +120,21 @@ char us_menu(char &menu)
      cin >> menu;
      menu = toupper(menu);
      return menu;
+}
+
+//Will create the file if it doesn't already exsist or append it if it already exsist
+void write_top_ten(int count[10], string word[10])
+{
+    string output_file;
+
+    cout << "Enter the file you would like to save the top ten words too:\n";
+    cin >> output_file;
+
+    fstream output;
+    output.open(output_file,ios::app);
+
+    output << "The top ten words and the occurrence are: \n";
+    for(int i = 0; i < 10; i++) { output << word[i] << " occured " << count[i] << " times\n"; }
+    output << endl;
+    output.close();
 }

@@ -15,7 +15,7 @@ class tree
         void print_inorder(tree *c);
         void print_preorder(tree *c);
         void print_postorder(tree *c);
-        //void print_top(tree *c);
+        void print_top(tree *c);
         void read_data(tree *& root);
         void delete_tree(tree *root);
         int search_tree(tree *c, string word);

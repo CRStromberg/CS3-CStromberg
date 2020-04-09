@@ -141,3 +141,24 @@ int tree::search_tree(tree *c, string word)
     }
     else return 0;
 }
+
+void tree::print_top(tree *c)
+{
+    map <int, string> common;
+    map<int, string>::reverse_iterator it;
+    if(c!=NULL)
+    {
+        print_inorder(c->left);
+        common.insert(pair <int, string>(c->count, c->word));
+        print_inorder(c->right);
+    }
+
+    int count = 0;
+    cout << "The top ten words used are:\n";
+    for (it = common.rbegin(); it != common.rend(); it++) 
+    { 
+        count++;
+    } 
+    cout << count << endl;
+
+}

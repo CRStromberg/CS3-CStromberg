@@ -14,6 +14,8 @@ int main()
     tree *root, x;
     string word_search;
     int temp;
+    int count[10];
+    string word[10];
     char menu;
     
     x.createtree(root);
@@ -27,6 +29,7 @@ int main()
                 if(x.emptytree(root))
                 {
                     x.read_data(root);
+                    cout << endl << endl;
                 }
                 else cout << endl << endl << "Previous tree needs to be deleted first." << endl << endl;
                 break;
@@ -82,7 +85,20 @@ int main()
                     else cout << endl << endl << "The tree is empty!"<< endl << endl;
                 break;
             case 'T':
-                //x.print_top(root);
+                for(int i = 0; i < 10; i++) { count[i] = 0; }
+                x.print_top(root, count, word);
+                cout << endl << endl << "The top ten words and the occurrence are: \n";
+                for(int i = 0; i < 10; i++) { cout << word[i] << " occured " << count[i] << " times\n"; }
+                cout << endl << endl;
+                break;
+            case 'W':
+                cout << endl << "Please enter the word to be deleted:\n";
+                cin >> word_search;
+                
+                word_search[0] = toupper(word_search[0]);
+
+                x.remove_word(root, word_search);
+                cout << endl << endl;
                 break;
             default:
                 cout << endl << "Invalid Selction!" << endl << endl;
@@ -98,7 +114,7 @@ char us_menu(char &menu)
     cout << "Please enter your choice\n" << "Enter C to create tree\n" <<"Enter P to print tree in pre-order\n"
      << "Enter I to print tree in in-order\n" << "Enter R to print tree in post-order\n" << "Enter T to print the top ten words\ne"
      << "Enter D to delete the entire tree\n" << "Enter S to search for a specific word\n" 
-     << "Enter E to exit\n";
+     << "Enter W to delete a word from the tree\n" << "Enter E to exit\n";
      cin >> menu;
      menu = toupper(menu);
      return menu;

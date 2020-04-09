@@ -142,23 +142,85 @@ int tree::search_tree(tree *c, string word)
     else return 0;
 }
 
-void tree::print_top(tree *c)
+void tree::print_top(tree *c, int count[10], string word[10])
 {
-    map <int, string> common;
-    map<int, string>::reverse_iterator it;
     if(c!=NULL)
     {
-        print_inorder(c->left);
-        common.insert(pair <int, string>(c->count, c->word));
-        print_inorder(c->right);
+        for(int i = 0; i < 10; i++)
+        {
+            if(c->count > count[i])
+            {
+                count[i] = c->count;
+                word[i] = c->word;
+                break;
+            }
+        }
+        print_top(c->left, count, word);
+        print_top(c->right, count, word);
     }
+}
 
-    int count = 0;
-    cout << "The top ten words used are:\n";
-    for (it = common.rbegin(); it != common.rend(); it++) 
-    { 
-        count++;
-    } 
-    cout << count << endl;
+void tree::remove_word(tree *root, string word)
+{
+    tree *c, *parent;
 
+    parent = NULL;
+	c = root;
+
+    while (c != NULL && word != c->word)
+	{
+		parent = c;
+		if (word < c->word) c = c->left;
+		else c = c->right;
+	}
+	if (c != NULL && c->word == word)
+	{
+		if (c->left == NULL && c->right == NULL) remove_word_leaf(c, parent);
+		else if (c->left != NULL && c->right != NULL) remove_word_two(c);
+		else remove_word_one(c, parent);
+	}
+	else cout << "The Word you entered is not in the tree.\n";
+}
+
+void tree::remove_word_leaf(tree *c, tree *parent)
+{
+    if (parent->left == c)
+	{
+		parent->left = NULL;
+		delete c;
+	}
+	else
+	{
+		parent->right = NULL;
+		delete c;
+	}
+}
+        
+void tree::remove_word_one(tree *c, tree *parent)
+{
+    tree* child;
+	if (c->left != NULL) child = c->left;
+	else child = c->right;
+
+	if (parent->left == c) parent->left = child;
+	else parent->right = child;
+	
+	delete c;
+}
+        
+void tree::remove_word_two(tree *c)
+{
+    tree* replace, * parent;
+	replace = c->right;
+	parent = c;
+	
+	while (replace->left != NULL)
+	{
+		parent = replace;
+		if (replace->left != NULL) replace = replace->left;
+	}
+	c->word = replace->word;
+    c->count = replace->count;
+	if (replace->right != NULL) remove_word_one(replace, parent);
+	else remove_word_leaf(replace, parent);
 }

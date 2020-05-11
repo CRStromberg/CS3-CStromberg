@@ -43,3 +43,14 @@
 - [Implimintation file](BST/bst.cpp)
 - [Header file](BST/bst.h)
 - total points = 100/100
+
+# Final Project
+- I pick the three katis problems fro my final project.
+- All three have difficulty level of 2.0 with testing functions
+- [Sum Of The Others](FinalProject/SumOfTheOthers/sum.cpp)
+- [Sum Of The Others Screenshot](FinalProject/SumOfTheOthers/screenshot.jpeg)
+- [Train Passengers](FinalProject/TrainPassengers/train.cpp)
+- [Train Passengers Screenshot](FinalProject/TrainPassengers/screenshot.jpeg)
+- [Video Speedup](FinalProject/VideoSpeedup/vid.cpp)
+- [Video Speedup Screenshot](FinalProject/VideoSpeedup/screenshot.jpeg)
+- total points = 100/100

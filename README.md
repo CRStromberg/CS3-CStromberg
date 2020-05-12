@@ -54,7 +54,7 @@
 - [Video Speedup](FinalProject/VideoSpeedup/vid.cpp)
 - [Video Speedup Screenshot](FinalProject/VideoSpeedup/screenshot.jpeg)
 - total points = 100/100
-On a side note: if you search my code online you might find it posted elsewhere. I did enjoy using 
+- On a side note: if you search my code online you might find it posted elsewhere. I did enjoy using 
 Kattis this summer and made a public repo with my code. That being said they still needed to be 
 modified for your requirements. I just don't want you to think I cheated. I wrote two of the three 
 programs shortly after signing up for Kattis.
